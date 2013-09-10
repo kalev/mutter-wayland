@@ -1,6 +1,6 @@
-Name:          mutter
+Name:          mutter-wayland
 Version:       3.9.91
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Window and compositing manager based on Clutter
 
 Group:         User Interface/Desktops
@@ -127,6 +127,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %exclude %{_datadir}/gtk-doc
 
 %changelog
+* Fri Sep 06 2013 Jasper St. Pierre <jstpierre@mecheye> - 3.9.91-3
+- Fork for mutter-wayland
+
 * Tue Sep 03 2013 Kalev Lember <kalevlember@gmail.com> - 3.9.91-2
 - Rebuilt for libgnome-desktop soname bump
 
