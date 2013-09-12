@@ -90,6 +90,11 @@ make install DESTDIR=$RPM_BUILD_ROOT
 #Remove libtool archives.
 rm -rf %{buildroot}/%{_libdir}/*.la
 
+# Drop man pages for removed utilities
+rm %{buildroot}%{_mandir}/man1/mutter-message.1*
+rm %{buildroot}%{_mandir}/man1/mutter-theme-viewer.1*
+rm %{buildroot}%{_mandir}/man1/mutter-window-demo.1*
+
 %find_lang %{name}
 
 # Mutter contains a .desktop file so we just need to validate it
@@ -109,14 +114,16 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %files -f %{name}.lang
 %doc README AUTHORS COPYING NEWS HACKING doc/theme-format.txt
 %doc %{_mandir}/man1/mutter.1.gz
-%{_bindir}/mutter
+%{_bindir}/mutter-launch
+%{_bindir}/mutter-wayland
 %{_datadir}/applications/*.desktop
-%{_datadir}/gnome/wm-properties/mutter-wm.desktop
 %{_libdir}/lib*.so.*
-%{_libdir}/mutter/
+%{_libdir}/mutter-wayland/
 %{_datadir}/GConf/gsettings/mutter-schemas.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.mutter.gschema.xml
+%{_datadir}/glib-2.0/schemas/org.gnome.mutter.wayland.gschema.xml
 %{_datadir}/gnome-control-center/keybindings/50-mutter-*.xml
+%{_datadir}/mutter-wayland/
 
 
 %files devel
