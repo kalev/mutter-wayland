@@ -7,7 +7,7 @@
 Name:          mutter-wayland
 Version:       3.9.91
 Release:       3%{?dist}
-Summary:       Window and compositing manager based on Clutter
+Summary:       Mutter window manager with experimental Wayland support
 
 Group:         User Interface/Desktops
 License:       GPLv2+
@@ -57,6 +57,11 @@ used as the display core of a larger system such as gnome-shell or
 Moblin. For this reason, Mutter is very extensible via plugins, which
 are used both to add fancy visual effects and to rework the window
 management behaviors to meet the needs of the environment.
+
+This package contains an experimental Mutter version with Wayland
+support. It will eventually get merged back into the main Mutter
+package and mutter-wayland is going to go away; in the mean time this
+package is available for early adapters.
 
 %package devel
 Summary: Development package for %{name}
