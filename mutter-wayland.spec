@@ -1,3 +1,9 @@
+# NOTE: When editing mutter-wayland.spec, please try to keep it in sync with
+# mutter.spec.
+#
+# mutter-wayland is a temporary fork of mutter, developed in a branch in the
+# same upstream git repository as mutter.
+
 Name:          mutter-wayland
 Version:       3.9.91
 Release:       3%{?dist}
