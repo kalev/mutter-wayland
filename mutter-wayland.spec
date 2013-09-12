@@ -36,6 +36,8 @@ BuildRequires: desktop-file-utils
 BuildRequires: gtk-doc gnome-common intltool
 BuildRequires: libcanberra-devel
 BuildRequires: gsettings-desktop-schemas-devel
+# Extra dependencies for the mutter-wayland branch
+BuildRequires: pam-devel
 
 # Make sure this can't be installed with an old gnome-shell build because of
 # an ABI change.
