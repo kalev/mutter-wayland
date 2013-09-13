@@ -63,7 +63,7 @@ management behaviors to meet the needs of the environment.
 This package contains an experimental Mutter version with Wayland
 support. It will eventually get merged back into the main Mutter
 package and mutter-wayland is going to go away; in the mean time this
-package is available for early adapters.
+package is available for early adopters.
 
 %package devel
 Summary: Development package for %{name}
