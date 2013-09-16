@@ -44,6 +44,10 @@ BuildRequires: pam-devel
 # an ABI change.
 Conflicts: gnome-shell < 3.9.90
 
+# Depend on the mutter package as we are removing the files that overlap
+# between mutter and mutter-wayland down below.
+Requires: mutter%{?_isa}
+
 Requires: control-center-filesystem
 Requires: startup-notification
 Requires: dbus-x11
@@ -109,6 +113,12 @@ rm %{buildroot}%{_mandir}/man1/mutter-message.1*
 rm %{buildroot}%{_mandir}/man1/mutter-theme-viewer.1*
 rm %{buildroot}%{_mandir}/man1/mutter-window-demo.1*
 
+# Drop files that overlap between the mutter and mutter-wayland packages
+rm %{buildroot}%{_datadir}/GConf/gsettings/mutter-schemas.convert
+rm %{buildroot}%{_datadir}/glib-2.0/schemas/org.gnome.mutter.gschema.xml
+rm %{buildroot}%{_datadir}/gnome-control-center/keybindings/50-mutter-*.xml
+rm %{buildroot}%{_datadir}/man/man1/mutter.1*
+
 %find_lang %{name}
 
 # Mutter contains a .desktop file so we just need to validate it
@@ -127,16 +137,12 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %files -f %{name}.lang
 %doc README AUTHORS COPYING NEWS HACKING doc/theme-format.txt
-%doc %{_mandir}/man1/mutter.1.gz
 %{_bindir}/mutter-launch
 %{_bindir}/mutter-wayland
 %{_datadir}/applications/*.desktop
 %{_libdir}/lib*.so.*
 %{_libdir}/mutter-wayland/
-%{_datadir}/GConf/gsettings/mutter-schemas.convert
-%{_datadir}/glib-2.0/schemas/org.gnome.mutter.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.mutter.wayland.gschema.xml
-%{_datadir}/gnome-control-center/keybindings/50-mutter-*.xml
 %{_datadir}/mutter-wayland/
 
 
@@ -150,6 +156,8 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %changelog
 * Tue Sep 17 2013 Kalev Lember <kalevlember@gmail.com> - 3.9.91-4
 - Review fixes (#1007445)
+- Drop the files that overlap between mutter and mutter-wayland and
+  depend on the mutter package instead
 - Update the description and add URL
 - Tighten -devel subpackage deps with _isa
 - Use the make_install macro
