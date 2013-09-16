@@ -137,7 +137,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %files -f %{name}.lang
 %doc README AUTHORS COPYING NEWS HACKING doc/theme-format.txt
-%{_bindir}/mutter-launch
+%attr(4755,root,root) %{_bindir}/mutter-launch
 %{_bindir}/mutter-wayland
 %{_datadir}/applications/*.desktop
 %{_libdir}/lib*.so.*
@@ -158,6 +158,7 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 - Review fixes (#1007445)
 - Drop the files that overlap between mutter and mutter-wayland and
   depend on the mutter package instead
+- Make mutter-launch SUID root
 - Update the description and add URL
 - Tighten -devel subpackage deps with _isa
 - Use the make_install macro
