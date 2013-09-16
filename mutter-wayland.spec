@@ -6,12 +6,13 @@
 
 Name:          mutter-wayland
 Version:       3.9.91
-Release:       3%{?dist}
+Release:       4%{?dist}
 Summary:       Mutter window manager with experimental Wayland support
 
 Group:         User Interface/Desktops
 License:       GPLv2+
 #VCS:          git:git://git.gnome.org/mutter
+URL:           https://wiki.gnome.org/ThreePointNine/Features/WaylandSupport
 Source0:       http://download.gnome.org/sources/%{name}/3.9/%{name}-%{version}.tar.xz
 
 BuildRequires: clutter-devel >= 1.13.5
@@ -55,10 +56,10 @@ using the Clutter toolkit with solid window-management logic inherited
 from the Metacity window manager.
 
 While Mutter can be used stand-alone, it is primarily intended to be
-used as the display core of a larger system such as gnome-shell or
-Moblin. For this reason, Mutter is very extensible via plugins, which
-are used both to add fancy visual effects and to rework the window
-management behaviors to meet the needs of the environment.
+used as the display core of a larger system such as GNOME Shell. For
+this reason, Mutter is very extensible via plugins, which are used both
+to add fancy visual effects and to rework the window management
+behaviors to meet the needs of the environment.
 
 This package contains an experimental Mutter version with Wayland
 support. It will eventually get merged back into the main Mutter
@@ -68,8 +69,7 @@ package is available for early adopters.
 %package devel
 Summary: Development package for %{name}
 Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-Requires: pkgconfig
+Requires: %{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files and libraries for developing Mutter plugins. Also includes
@@ -98,7 +98,7 @@ done
 make %{?_smp_mflags} V=1
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+%make_install
 
 #Remove libtool archives.
 rm -rf %{buildroot}/%{_libdir}/*.la
@@ -147,5 +147,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %exclude %{_datadir}/gtk-doc
 
 %changelog
+* Tue Sep 17 2013 Kalev Lember <kalevlember@gmail.com> - 3.9.91-4
+- Review fixes (#1007445)
+- Update the description and add URL
+- Tighten -devel subpackage deps with _isa
+- Use the make_install macro
+
 * Fri Sep 06 2013 Jasper St. Pierre <jstpierre@mecheye> - 3.9.91-3
 - Initial mutter-wayland packaging based on the mutter package
