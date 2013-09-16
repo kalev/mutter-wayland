@@ -103,7 +103,8 @@ make %{?_smp_mflags} V=1
 #Remove libtool archives.
 rm -rf %{buildroot}/%{_libdir}/*.la
 
-# Drop man pages for removed utilities
+# Drop man pages for removed utilities; this is fixed in upstream git and won't
+# be needed for 3.9.92
 rm %{buildroot}%{_mandir}/man1/mutter-message.1*
 rm %{buildroot}%{_mandir}/man1/mutter-theme-viewer.1*
 rm %{buildroot}%{_mandir}/man1/mutter-window-demo.1*
